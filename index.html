@@ -1,91 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8">
   <title>CodFleet | Being Coded</title>
-  <link rel="icon" href="codfleet-logo.png" type="image/x-icon" />
+  <!-- Stylesheets -->
+  <link href="assets/css/bootstrap.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/responsive.css" rel="stylesheet">
+  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
+  <!-- Favicon -->
+  <link rel="icon" href="Codfleet-logo.png" type="image/x-icon">
+  <!-- Responsive Meta -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Spline Viewer -->
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.3.5/build/spline-viewer.js"></script>
+
   <style>
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
-      width: 100%;
       overflow: hidden;
       font-family: 'Roboto Mono', monospace;
       background-color: #111;
-      position: relative;
       color: #fff;
     }
 
-    /* Background Image Layer */
-    .background {
-      position: fixed;
-      top: 0;
-      left: 0;
+    /* Background Image */
+    .banner-one {
+      position: relative;
+      background: url('pexels-clickerhappy-804456.png') no-repeat center center / cover;
       width: 100vw;
       height: 100vh;
-      background: url('pexels-clickerhappy-804456.png') no-repeat center center / cover;
+    }
+
+    .banner-one::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #000;
       opacity: 0.3;
-      z-index: -3;
+      z-index: 1;
     }
 
     /* Logo */
-    .logo {
+    .logo img {
+      width: 520px;
+      height: auto;
       position: absolute;
       top: 20px;
       left: 20px;
       z-index: 10;
     }
 
-    .logo img {
-      width: 520px;
-      height: auto;
-    }
-
-    /* Spline Robot 3D Viewport */
-    spline-viewer {
-      position: absolute;
-      top: 15%;
-      left: 15%;
-      width: 70vw;
-      height: 70vh;
-      z-index: -2;
-      transform: scale(0.95);
-    }
-
-    /* Main Text Content */
-    .content {
+    /* Robot */
+    .robot spline-viewer {
       position: absolute;
       top: 50%;
       left: 50%;
+      transform: translate(-50%, -50%) scale(0.7);
+      width: 100vw;
+      height: 100vh;
+      z-index: 2;
+    }
+
+    /* Main Text */
+    .banner-one_content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      z-index: 5;
       transform: translate(-50%, -50%);
       text-align: center;
       color: white;
-      z-index: 2;
-      max-width: 90%;
     }
 
-    .content h1 {
+    .banner-one_heading {
       font-size: 3rem;
-      margin-bottom: 1rem;
       color: #eb4628;
+      margin-bottom: 1rem;
     }
 
-    .content p {
-      font-size: 1.05rem;
-      margin-bottom: 2rem;
-    }
-
-    .content a.button {
-      background-color: #eb4628;
-      color: white;
-      padding: 0.8rem 1.8rem;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 5px;
+    .banner-one_subtext {
       font-size: 1rem;
+      line-height: 1.5;
+      margin-bottom: 2rem;
     }
 
     /* Footer */
@@ -96,64 +101,41 @@
       transform: translateX(-50%);
       font-size: 0.85rem;
       text-align: center;
-      z-index: 2;
+      z-index: 5;
       color: white;
     }
-
-    /* Mobile Responsive Adjustments */
-    @media screen and (max-width: 768px) {
-      .logo img {
-        width: 250px;
-      }
-
-      .content h1 {
-        font-size: 2rem;
-      }
-
-      .content p {
-        font-size: 0.9rem;
-      }
-
-      spline-viewer {
-        top: 25%;
-        left: 5%;
-        width: 90vw;
-        height: 50vh;
-        transform: scale(0.9);
-      }
-    }
   </style>
-
-  <!-- Spline Script -->
-  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.3.5/build/spline-viewer.js"></script>
 </head>
 
 <body>
 
-  <!-- Background -->
-  <div class="background"></div>
+  <div class="page-wrapper">
+    <!-- Logo -->
+    <div class="logo">
+      <img src="Codfleet-logo.png" alt="CodFleet Logo">
+    </div>
 
-  <!-- Logo -->
-  <div class="logo">
-    <img src="codfleet-logo.png" alt="CodFleet Logo" />
-  </div>
+    <!-- Banner -->
+    <section class="banner-one">
+      <!-- Robot -->
+      <div class="robot">
+        <spline-viewer url="https://prod.spline.design/AqtlWJlNbO-ZMkvz/scene.splinecode"></spline-viewer>
+      </div>
 
-  <!-- Robot -->
-  <div class="spline-wrapper">
-  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.3.5/build/spline-viewer.js"></script>
-  <spline-viewer url="https://prod.spline.design/AqtlWJlNbO-ZMkvz/scene.splinecode"></spline-viewer>
-</div>
+      <!-- Main Content -->
+      <div class="banner-one_content">
+        <h1 class="banner-one_heading">Being Coded &gt;_</h1>
+        <div class="banner-one_subtext">
+          Our engineers are busy behind the screens.<br>
+          Your future fleet is almost here.
+        </div>
+      </div>
 
-  <!-- Text Content -->
-  <div class="content">
-    <h1>Being Coded &gt;_</h1>
-    <p>Our engineers are busy behind the screens.<br>Your future fleet is almost here.</p>
-    <a href="mailto:info@codfleet.eu" class="button">LET’S TALK</a>
-  </div>
-
-  <!-- Footer -->
-  <div class="footer">
-    MADE WITH HEART, BUILT FOR PEOPLE — CODFLEET LAUNCHES SOON 🇫🇮 ❤️
+      <!-- Footer -->
+      <div class="footer">
+        MADE WITH HEART, BUILT FOR PEOPLE — CODFLEET LAUNCHES SOON 🇫🇮 ❤️
+      </div>
+    </section>
   </div>
 
 </body>
