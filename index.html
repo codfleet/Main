@@ -1,31 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
+  <title>CodFleet | Being Coded</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
+
+  <!-- Viewport and Meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CodFleet — 3D Splash</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/images/code (1)-1 Background Removed.png" type="image/x-icon">
+
+  <!-- Spline Robot Viewer -->
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.3.5/build/spline-viewer.js"></script>
+
   <style>
-    html, body {
+    * {
       margin: 0;
       padding: 0;
-      height: 100%;
-      width: 100%;
-      overflow: hidden;
-      background: #000; /* fallback bg in case scene fails */
+      box-sizing: border-box;
     }
 
-    iframe {
+    body, html {
+      height: 100%;
+      font-family: 'Roboto Mono', monospace;
+      background: #000;
+      color: white;
+    }
+
+    .banner-one {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      background-image: url('assets/images/background/1.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .robot {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    spline-viewer {
+      width: 100%;
+      height: 100%;
+    }
+
+    .banner-one_content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      color: white;
+    }
+
+    .logo {
+      position: absolute;
+      top: 30px;
+      left: 30px;
+      z-index: 3;
+    }
+
+    .logo img {
+      height: 60px;
+    }
+
+    .headline {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #eb4628;
+      margin-bottom: 1rem;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      color: #eb4628;
+      margin-bottom: 2rem;
+      max-width: 600px;
+    }
+
+    .tagline {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #ffffff;
+      margin-bottom: 2rem;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: white;
+      background-color: #eb4628;
       border: none;
-      width: 100vw;
-      height: 100vh;
-      display: block;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+      margin-bottom: 2rem;
+    }
+
+    .button:hover {
+      background-color: #c63b20;
+    }
+
+    .footer-note {
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #ffffffcc;
+    }
+
+    .footer-note img {
+      height: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .headline {
+        font-size: 1.5rem;
+      }
+
+      .subtitle {
+        font-size: 0.9rem;
+      }
+
+      .tagline {
+        font-size: 0.8rem;
+      }
+
+      .logo img {
+        height: 50px;
+      }
     }
   </style>
 </head>
+
 <body>
-  <iframe
-    src="https://my.spline.design/100followers-viiYbssgrQCALDnAlDWBJZSY/"
-    allowfullscreen
-  ></iframe>
+
+  <!-- CodFleet Logo -->
+  <div class="logo">
+    <a href="/">
+      <img src="assets/images/code (1)-1 Background Removed.png" alt="CodFleet Logo">
+    </a>
+  </div>
+
+  <!-- Main Splash -->
+  <section class="banner-one">
+
+    <!-- Robot Background -->
+    <div class="robot">
+      <spline-viewer url="https://prod.spline.design/AqtlWJlNbO-ZMkvz/scene.splinecode"></spline-viewer>
+    </div>
+
+    <!-- Overlay Content -->
+    <div class="banner-one_content">
+      <div class="headline">Being Coded >_</div>
+      <div class="subtitle">Our engineers are busy behind the screens. Your future Fleet is almost here.</div>
+      <div class="tagline">MADE WITH HEART, BUILT FOR PEOPLE — CODFLEET LAUNCHES SOON</div>
+      <a href="mailto:info@codfleet.eu" class="button">Let's Talk</a>
+      <div class="footer-note">
+        <span>Made in Finland</span>
+        <img src="assets/images/icons8-heart.gif" alt="Heart">
+      </div>
+    </div>
+
+  </section>
+
 </body>
 </html>
