@@ -22,32 +22,42 @@
     body, html {
       height: 100%;
       font-family: 'Roboto Mono', monospace;
-      color: white;
-      background: url('assets/images/pexels-clickerhappy-804456.jpg') no-repeat center center fixed;
-      background-size: cover;
       overflow: hidden;
     }
 
-    .overlay {
-      position: absolute;
+    /* Background Image */
+    .background {
+      position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.4);
-      z-index: 0;
+      background: url('assets/pexels-clickerhappy-804456.jpg') no-repeat center center fixed;
+      background-size: cover;
+      z-index: -2;
     }
 
+    /* Dark overlay */
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.3); /* 30% dark */
+      z-index: -1;
+    }
+
+    /* Logo */
     .logo {
       position: absolute;
-      top: 20px;
-      left: 20px;
+      top: 30px;
+      left: 30px;
       z-index: 2;
     }
 
     .logo img {
-      width: 180px;
+      width: 520px;
       height: auto;
     }
 
+    /* Robot */
     .robot {
       width: 100%;
       height: 100vh;
@@ -57,6 +67,7 @@
       z-index: 1;
     }
 
+    /* Main Content */
     .content {
       position: absolute;
       z-index: 2;
@@ -64,6 +75,8 @@
       left: 50%;
       transform: translate(-50%, -50%);
       text-align: center;
+      color: white;
+      padding: 0 20px;
     }
 
     .content h1 {
@@ -77,9 +90,9 @@
       color: white;
       margin-bottom: 1rem;
       max-width: 500px;
-      line-height: 1.5;
       margin-left: auto;
       margin-right: auto;
+      line-height: 1.6;
     }
 
     .email-btn {
@@ -95,6 +108,7 @@
       font-size: 0.95rem;
     }
 
+    /* Footer */
     .footer {
       position: absolute;
       bottom: 20px;
@@ -105,40 +119,42 @@
       z-index: 2;
     }
 
+    /* Responsive */
     @media screen and (max-width: 768px) {
+      .logo img {
+        width: 240px;
+      }
+
       .content h1 {
         font-size: 2rem;
       }
 
-      .logo img {
-        width: 140px;
-      }
-
       .content p {
         font-size: 0.95rem;
-        padding: 0 10px;
       }
     }
   </style>
 </head>
 <body>
 
+  <!-- Background and Overlay -->
+  <div class="background"></div>
   <div class="overlay"></div>
 
   <!-- Logo -->
   <div class="logo">
-    <img src="assets/images/codfleet-logo.png" alt="CodFleet Logo" />
+    <img src="assets/codfleet-logo.png" alt="CodFleet Logo">
   </div>
 
-  <!-- Robot Spline -->
+  <!-- Robot -->
   <div class="robot">
     <spline-viewer url="https://prod.spline.design/AqtlWJlNbO-ZMkvz/scene.splinecode"></spline-viewer>
   </div>
 
-  <!-- Main Text Content -->
+  <!-- Text -->
   <div class="content">
     <h1>Being Coded >_</h1>
-    <p>Our engineers are busy behind the screens. Your future fleet is almost here.</p>
+    <p>Our engineers are busy behind the screens.<br>Your future fleet is almost here.</p>
     <a href="mailto:info@codfleet.eu" class="email-btn">LET'S TALK</a>
   </div>
 
