@@ -1,55 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>CodFleet | Launching Soon</title>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- Font -->
+  <title>CodFleet | Being Coded</title>
+  <link rel="icon" href="assets/codfleet-logo.png" type="image/x-icon" />
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
-
-  <!-- Spline Script -->
-  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.3.5/build/spline-viewer.js"></script>
-
-  <!-- Styles -->
   <style>
-    * {
+    html, body {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-    }
-
-    body, html {
       height: 100%;
-      font-family: 'Roboto Mono', monospace;
       overflow: hidden;
+      font-family: 'Roboto Mono', monospace;
+      background-color: #111;
+      position: relative;
+      color: #fff;
     }
 
     /* Background Image */
     .background {
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: url('assets/pexels-clickerhappy-804456.jpg') no-repeat center center fixed;
-      background-size: cover;
-      z-index: -2;
-    }
-
-    /* Dark overlay */
-    .overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.3); /* 30% dark */
-      z-index: -1;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: url('assets/pexels-clickerhappy-804456.jpg') no-repeat center center / cover;
+      opacity: 0.3;
+      z-index: -3;
     }
 
     /* Logo */
     .logo {
       position: absolute;
-      top: 30px;
-      left: 30px;
-      z-index: 2;
+      top: 20px;
+      left: 20px;
+      z-index: 10;
     }
 
     .logo img {
@@ -57,105 +43,80 @@
       height: auto;
     }
 
-    /* Robot */
-    .robot {
-      width: 100%;
-      height: 100vh;
+    /* Spline Robot */
+    spline-viewer {
       position: absolute;
       top: 0;
       left: 0;
-      z-index: 1;
+      width: 100vw;
+      height: 100vh;
+      z-index: -2;
     }
 
-    /* Main Content */
+    /* Center Text Content */
     .content {
       position: absolute;
-      z-index: 2;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       text-align: center;
       color: white;
-      padding: 0 20px;
+      z-index: 2;
     }
 
     .content h1 {
       font-size: 3rem;
-      color: #eb4628;
       margin-bottom: 1rem;
+      color: #eb4628;
     }
 
     .content p {
       font-size: 1rem;
-      color: white;
-      margin-bottom: 1rem;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.6;
+      margin-bottom: 2rem;
     }
 
-    .email-btn {
-      display: inline-block;
-      margin-top: 1.5rem;
-      padding: 12px 30px;
+    .content a.button {
       background-color: #eb4628;
       color: white;
-      border: none;
-      border-radius: 4px;
+      padding: 0.8rem 1.8rem;
       text-decoration: none;
       font-weight: bold;
-      font-size: 0.95rem;
+      border-radius: 5px;
+      font-size: 1rem;
     }
 
     /* Footer */
     .footer {
       position: absolute;
       bottom: 20px;
-      width: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.85rem;
       text-align: center;
-      font-size: 0.9rem;
-      color: #ffffff;
       z-index: 2;
-    }
-
-    /* Responsive */
-    @media screen and (max-width: 768px) {
-      .logo img {
-        width: 240px;
-      }
-
-      .content h1 {
-        font-size: 2rem;
-      }
-
-      .content p {
-        font-size: 0.95rem;
-      }
+      color: white;
     }
   </style>
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.3.5/build/spline-viewer.js"></script>
 </head>
 <body>
 
-  <!-- Background and Overlay -->
+  <!-- Background Image -->
   <div class="background"></div>
-  <div class="overlay"></div>
 
   <!-- Logo -->
   <div class="logo">
-    <img src="assets/codfleet-logo.png" alt="CodFleet Logo">
+    <img src="assets/codfleet-logo.png" alt="CodFleet Logo" />
   </div>
 
-  <!-- Robot -->
-  <div class="robot">
-    <spline-viewer url="https://prod.spline.design/AqtlWJlNbO-ZMkvz/scene.splinecode"></spline-viewer>
-  </div>
+  <!-- 3D Robot -->
+  <spline-viewer url="https://prod.spline.design/AqtlWJlNbO-ZMkvz/scene.splinecode"></spline-viewer>
 
-  <!-- Text -->
+  <!-- Centered Content -->
   <div class="content">
-    <h1>Being Coded >_</h1>
+    <h1>Being Coded &gt;_</h1>
     <p>Our engineers are busy behind the screens.<br>Your future fleet is almost here.</p>
-    <a href="mailto:info@codfleet.eu" class="email-btn">LET'S TALK</a>
+    <a href="mailto:info@codfleet.eu" class="button">LET’S TALK</a>
   </div>
 
   <!-- Footer -->
