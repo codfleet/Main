@@ -1,142 +1,214 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>CodFleet | Being Coded</title>
-  <!-- Stylesheets -->
-  <link href="assets/css/bootstrap.css" rel="stylesheet">
-  <link href="assets/css/style.css" rel="stylesheet">
-  <link href="assets/css/responsive.css" rel="stylesheet">
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
-  <!-- Favicon -->
-  <link rel="icon" href="Codfleet-logo.png" type="image/x-icon">
-  <!-- Responsive Meta -->
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Spline Viewer Example</title>
 
-  <!-- Spline Viewer -->
-  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.3.5/build/spline-viewer.js"></script>
+    <!-- Load Spline Viewer -->
+    <script
+      type="module"
+      src="https://unpkg.com/@splinetool/viewer@1.9.30/build/spline-viewer.js"
+    ></script>
 
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      overflow: hidden;
-      font-family: 'Roboto Mono', monospace;
-      background-color: #111;
-      color: #fff;
-    }
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-    /* Background Image */
-    .banner-one {
-      position: relative;
-      background: url('pexels-clickerhappy-804456.png') no-repeat center center / cover;
-      width: 100vw;
-      height: 100vh;
-    }
+      body,
+      html {
+        height: 100%;
+        width: 100%;
+        font-family: Arial, sans-serif;
+        overflow: hidden;
+      }
 
-    .banner-one::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #000;
-      opacity: 0.1; /* reduced opacity to make BG clearer */
-      z-index: 1;
-    }
+      .container {
+        display: flex;
+        height: 100vh;
+        width: 100%;
+        position: relative;
+      }
 
-    /* Logo */
-    .logo img {
-      width: 520px;
-      height: auto;
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      z-index: 10;
-    }
+      /* LEFT SIDE TEXT */
+      .left-text {
+        position: absolute;
+        top: 50%;
+        left: 50px;
+        transform: translateY(-50%);
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        color: #fff;
+        z-index: 10;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 20px 30px;
+        border-radius: 20px;
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      }
 
-    /* Robot */
-    .robot spline-viewer {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(1.0); /* full size */
-      width: 100vw;
-      height: 100vh;
-      z-index: 2;
-    }
+      .left-text h1 {
+        font-size: 2.8rem;
+        font-weight: bold;
+        margin-bottom: 15px;
+        color: #fff;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      }
 
-    /* Main Text */
-    .banner-one_content {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      z-index: 5;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      color: white;
-    }
+      .left-text p {
+        font-size: 1.1rem;
+        line-height: 1.5;
+        margin-bottom: 8px;
+        color: #fff;
+        font-family: "Courier New", monospace;
+        font-weight: 600;
+        text-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+      }
 
-    .banner-one_heading {
-      font-size: 3rem;
-      color: #eb4628;
-      margin-bottom: 1rem;
-    }
+      .footer-line {
+        position: fixed;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: 0;
+        font-size: 1rem;
+        opacity: 0.8;
+        color: #000;
+        z-index: 10;
+      }
 
-    .banner-one_subtext {
-      font-size: 1rem;
-      line-height: 1.5;
-      margin-bottom: 2rem;
-    }
+      /* RIGHT SIDE SPLINE */
+      .right-spline {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: #cfe8ff;
+        background: linear-gradient(160deg, #d9edff 0%, #b7d8ff 100%);
+        z-index: 1;
+      }
 
-    /* Footer */
-    .footer {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 0.85rem;
-      text-align: center;
-      z-index: 5;
-      color: white;
-    }
-  </style>
-</head>
+      spline-viewer {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
 
-<body>
+      /* LOGO */
+      .logo {
+        position: fixed;
+        top: 30px;
+        left: 30px;
+        z-index: 10;
+      }
 
-  <div class="page-wrapper">
-    <!-- Logo -->
+      .logo img {
+        height: 130px;
+        width: auto;
+      }
+
+      /* RESPONSIVE DESIGN */
+      @media (max-width: 768px) {
+        .logo {
+          top: 20px;
+          left: 20px;
+        }
+
+        .logo img {
+          height: 80px;
+        }
+
+        .left-text {
+          top: 50%;
+          left: 20px;
+          transform: translateY(-50%);
+          padding: 15px 20px;
+        }
+
+        .left-text h1 {
+          font-size: 1.8rem;
+          margin-bottom: 12px;
+        }
+
+        .left-text p {
+          font-size: 0.95rem;
+          margin-bottom: 6px;
+        }
+
+        .footer-line {
+          bottom: 20px;
+          font-size: 0.9rem;
+          padding: 0 20px;
+          text-align: center;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .logo {
+          top: 15px;
+          left: 15px;
+        }
+
+        .logo img {
+          height: 60px;
+        }
+
+        .left-text {
+          left: 15px;
+          padding: 12px 15px;
+        }
+
+        .left-text h1 {
+          font-size: 1.4rem;
+          margin-bottom: 10px;
+        }
+
+        .left-text p {
+          font-size: 0.85rem;
+          margin-bottom: 5px;
+        }
+
+        .footer-line {
+          bottom: 15px;
+          font-size: 0.75rem;
+          padding: 0 15px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- LOGO -->
     <div class="logo">
-      <img src="Codfleet-logo.png" alt="CodFleet Logo">
+      <img src="asset/logo.png" alt="CODFleet Logo" />
     </div>
 
-    <!-- Banner -->
-    <section class="banner-one">
-      <!-- Robot -->
-      <div class="robot">
-        <spline-viewer url="https://prod.spline.design/AqtlWJlNbO-ZMkvz/scene.splinecode"></spline-viewer>
+    <div class="container">
+      <!-- LEFT SIDE CONTENT -->
+      <div class="left-text">
+        <h1>Being Coded &gt;_</h1>
+        <p>Our engineers are busy behind the screens.</p>
+        <p>Your future fleet is almost here.</p>
       </div>
 
-      <!-- Main Content -->
-      <div class="banner-one_content">
-        <h1 class="banner-one_heading">Being Coded &gt;_</h1>
-        <div class="banner-one_subtext">
-          Our engineers are busy behind the screens.<br>
-          Your future fleet is almost here.
-        </div>
-      </div>
+      <!-- FOOTER TEXT -->
+      <p class="footer-line">
+        MADE WITH HEART, BUILT FOR PEOPLE – CODFLEET LAUNCHES SOON FI ❤️
+      </p>
 
-      <!-- Footer -->
-      <div class="footer">
-        MADE WITH HEART, BUILT FOR PEOPLE — CODFLEET LAUNCHES SOON 🇫🇮 ❤️
+      <!-- RIGHT SIDE 3D MODEL -->
+      <div class="right-spline">
+        <spline-viewer
+          url="https://prod.spline.design/G9-pYfV46V29iuwa/scene.splinecode"
+        ></spline-viewer>
       </div>
-    </section>
-  </div>
-
-</body>
+    </div>
+  </body>
 </html>
