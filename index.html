@@ -83,6 +83,60 @@
         z-index: 10;
       }
 
+      /* COUNTDOWN TIMER */
+      .countdown {
+        position: absolute;
+        top: calc(40% + 200px);
+        left: 50px;
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        color: #fff;
+        z-index: 10;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 20px 30px;
+        border-radius: 20px;
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      }
+
+      .countdown-label {
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 10px;
+        color: #fff;
+        text-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+      }
+
+      .countdown-timer {
+        display: flex;
+        gap: 15px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        font-family: "Courier New", monospace;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      .countdown-unit {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .countdown-value {
+        font-size: 1.8rem;
+        color: #fff;
+      }
+
+      .countdown-label-small {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        opacity: 0.8;
+      }
+
       /* RIGHT SIDE SPLINE */
       .right-spline {
         position: fixed;
@@ -122,7 +176,7 @@
         }
 
         .logo img {
-          height: 80px;
+          height: 100px;
         }
 
         .left-text {
@@ -142,6 +196,25 @@
           margin-bottom: 6px;
         }
 
+        .countdown {
+          top: calc(50% + 160px);
+          left: 20px;
+          padding: 15px 20px;
+        }
+
+        .countdown-label {
+          font-size: 0.8rem;
+        }
+
+        .countdown-timer {
+          gap: 10px;
+          font-size: 1.2rem;
+        }
+
+        .countdown-value {
+          font-size: 1.4rem;
+        }
+
         .footer-line {
           bottom: 20px;
           font-size: 0.9rem;
@@ -157,7 +230,7 @@
         }
 
         .logo img {
-          height: 60px;
+          height: 70px;
         }
 
         .left-text {
@@ -173,6 +246,30 @@
         .left-text p {
           font-size: 0.85rem;
           margin-bottom: 5px;
+        }
+
+        .countdown {
+          top: calc(50% + 140px);
+          left: 15px;
+          padding: 12px 15px;
+        }
+
+        .countdown-label {
+          font-size: 0.75rem;
+          margin-bottom: 8px;
+        }
+
+        .countdown-timer {
+          gap: 8px;
+          font-size: 0.9rem;
+        }
+
+        .countdown-value {
+          font-size: 1.1rem;
+        }
+
+        .countdown-label-small {
+          font-size: 0.6rem;
         }
 
         .footer-line {
@@ -198,6 +295,29 @@
         <p>Your future fleet is almost here.</p>
       </div>
 
+      <!-- COUNTDOWN TIMER -->
+      <div class="countdown">
+        <div class="countdown-label">Launch In</div>
+        <div class="countdown-timer">
+          <div class="countdown-unit">
+            <div class="countdown-value" id="days">00</div>
+            <div class="countdown-label-small">Days</div>
+          </div>
+          <div class="countdown-unit">
+            <div class="countdown-value" id="hours">00</div>
+            <div class="countdown-label-small">Hours</div>
+          </div>
+          <div class="countdown-unit">
+            <div class="countdown-value" id="minutes">00</div>
+            <div class="countdown-label-small">Mins</div>
+          </div>
+          <div class="countdown-unit">
+            <div class="countdown-value" id="seconds">00</div>
+            <div class="countdown-label-small">Secs</div>
+          </div>
+        </div>
+      </div>
+
       <!-- FOOTER TEXT -->
       <p class="footer-line">
         MADE WITH HEART, BUILT FOR PEOPLE – CODFLEET LAUNCHES SOON FI ❤️
@@ -210,5 +330,45 @@
         ></spline-viewer>
       </div>
     </div>
+
+    <script>
+      function updateCountdown() {
+        // Set target date to December 31st, 2025
+        const targetDate = new Date(2025, 11, 31, 23, 59, 59);
+
+        function calculate() {
+          const now = new Date();
+          const diff = targetDate - now;
+
+          if (diff > 0) {
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor(
+              (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+            );
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById("days").textContent = String(days).padStart(
+              2,
+              "0"
+            );
+            document.getElementById("hours").textContent = String(
+              hours
+            ).padStart(2, "0");
+            document.getElementById("minutes").textContent = String(
+              minutes
+            ).padStart(2, "0");
+            document.getElementById("seconds").textContent = String(
+              seconds
+            ).padStart(2, "0");
+          }
+        }
+
+        calculate();
+        setInterval(calculate, 1000);
+      }
+
+      updateCountdown();
+    </script>
   </body>
 </html>
